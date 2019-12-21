@@ -17,7 +17,7 @@ public class ServicesProps {
        return services.stream().
                filter(service -> service.getName().equals(name)).
                findFirst().
-               orElseThrow(() -> new RuntimeException("Unsupported service name"));
+               orElseThrow(() -> new RuntimeException("Unsupported service name "+name));
 
     }
 }
