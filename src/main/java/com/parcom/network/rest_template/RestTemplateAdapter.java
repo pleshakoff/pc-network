@@ -5,6 +5,7 @@ import com.parcom.network.Network;
 import com.parcom.network.Service;
 import com.parcom.network.ServicesProps;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 
 @RequiredArgsConstructor
+@Slf4j
 public class RestTemplateAdapter implements Network {
 
     private final ServicesProps servicesProps;
@@ -53,6 +55,7 @@ public class RestTemplateAdapter implements Network {
 
 
         HttpEntity<B> httpEntity = new HttpEntity<>(body, httpHeaders);
+        log.info("Call {}",uri.toString());
         ResponseEntity<T> responseEntity= restTemplate.exchange(uri,method,httpEntity,responseType);
         if (responseEntity.getStatusCode()== HttpStatus.OK) {
             return responseEntity;
