@@ -76,6 +76,11 @@ public interface Network {
         return call(serviceName,HttpMethod.DELETE,null,null, additionalHeaders,null,pathSegments);
     };
 
+    default  ResponseEntity<String> callDelete(String serviceName,
+                                               String... pathSegments
+    ){
+        return call(serviceName,HttpMethod.DELETE,null,null, null,null,pathSegments);
+    };
 
 
     <T,B> ResponseEntity<T> call(String serviceName,
