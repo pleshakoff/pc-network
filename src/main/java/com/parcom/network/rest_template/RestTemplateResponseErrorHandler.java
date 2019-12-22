@@ -1,6 +1,7 @@
 package com.parcom.network.rest_template;
 
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.ResponseErrorHandler;
 
@@ -24,14 +25,15 @@ public class RestTemplateResponseErrorHandler
     }
 
     @Override
-    public void handleError(ClientHttpResponse httpResponse)
-    {
-        throw new RuntimeException("Remote procedure call error");
+    public void handleError(ClientHttpResponse httpResponse) throws IOException {
+        HttpStatus statusCode = HttpStatus.resolve(httpResponse.getRawStatusCode());
+          throw new RuntimeException(String.format("Remote procedure call error. Status code %s",httpResponse));
     }
 
     @Override
-    public void handleError(URI url, HttpMethod method, ClientHttpResponse httpResponse) {
-      throw new RuntimeException(String.format("Remote procedure call error. For %s %s",method,url));
+    public void handleError(URI url, HttpMethod method, ClientHttpResponse httpResponse) throws IOException {
+      HttpStatus statusCode = HttpStatus.resolve(httpResponse.getRawStatusCode());
+      throw new RuntimeException(String.format("Remote procedure call error. Status code %s For %s %s",statusCode,method,url));
 
     }
 }
