@@ -14,8 +14,8 @@ class RestTemplateUtils {
 
     static HttpHeaders getHttpHeaders() {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON_UTF8));
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set(UserUtils.X_AUTH_TOKEN, UserUtils.getToken());
         return headers;
     }

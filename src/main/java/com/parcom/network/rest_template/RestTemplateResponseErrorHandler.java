@@ -27,7 +27,7 @@ public class RestTemplateResponseErrorHandler
     @Override
     public void handleError(ClientHttpResponse httpResponse) throws IOException {
         HttpStatus statusCode = HttpStatus.resolve(httpResponse.getRawStatusCode());
-          throw new RuntimeException(String.format("Remote procedure call error. Status code %s",httpResponse));
+          throw new RuntimeException(String.format("Remote procedure call error. Status code %s",statusCode));
     }
 
     @Override

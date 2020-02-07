@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @ConfigurationProperties(prefix = "parcom")
 public class ServicesProps {
+
     private List<Service> services =  new ArrayList<>();
     public Service getByName(String name){
        return services.stream().
